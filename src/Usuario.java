@@ -12,7 +12,7 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    // Getters e Setters
+    
     public String getNome() {
         return nome;
     }
@@ -45,24 +45,19 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    // Motivo de alteração 1: Regras de segurança e validação
     public boolean validarSenhaForte() {
         return senha != null && senha.length() >= 8 && senha.matches(".*[A-Z].*");
     }
 
-    // Motivo de alteração 2: Comunicação / Templates de E-mail
     public String montarEmailBoasVindas() {
         return "Olá " + nome + ", bem-vindo ao sistema! Seu e-mail cadastrado é " + email;
     }
 
-    // Motivo de alteração 3: Comunicação / Envio de SMS
     public String montarSmsToken(String token) {
         return "Enviado para " + telefone + ": Seu código de acesso é " + token;
     }
 
-    // Motivo de alteração 4 (Novo agravante): Regras de Negócio de Fidelidade / Faturamento
     public int calcularPontosFidelidade(int mesesAtivo) {
-        // Se a regra de cálculo de pontos da empresa mudar, você precisará modificar a classe Usuario
         return mesesAtivo * 15;
     }
 }

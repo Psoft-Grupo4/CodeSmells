@@ -11,7 +11,6 @@ public class Pedido {
         this.formaPagamento = formaPagamento;
     }
 
-    // Getters e Setters
     public String getCliente() {
         return cliente;
     }
@@ -44,7 +43,6 @@ public class Pedido {
         this.formaPagamento = formaPagamento;
     }
 
-    // Responsabilidade 1: Regras de Frete e Entrega
     public double calcularFrete() {
         if (estadoDestino.equalsIgnoreCase("SP")) {
             return 15.0;
@@ -52,7 +50,6 @@ public class Pedido {
         return 35.0;
     }
 
-    // Responsabilidade 2: Regras de Pagamento e Descontos
     public double calcularDescontoPagamento() {
         if (formaPagamento.equalsIgnoreCase("PIX")) {
             return valorItens * 0.10;
@@ -60,7 +57,6 @@ public class Pedido {
         return 0.0;
     }
 
-    // Responsabilidade 3: Regras Fiscais / Nota Fiscal
     public String gerarNotaFiscal() {
         return "NF-e | Cliente: " + cliente + " | Total com Frete: " + (valorItens + calcularFrete() - calcularDescontoPagamento());
     }
