@@ -1,0 +1,67 @@
+public class Pedido {
+    private String cliente;
+    private double valorItens;
+    private String estadoDestino;
+    private String formaPagamento;
+
+    public Pedido(String cliente, double valorItens, String estadoDestino, String formaPagamento) {
+        this.cliente = cliente;
+        this.valorItens = valorItens;
+        this.estadoDestino = estadoDestino;
+        this.formaPagamento = formaPagamento;
+    }
+
+    // Getters e Setters
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+
+    public double getValorItens() {
+        return valorItens;
+    }
+
+    public void setValorItens(double valorItens) {
+        this.valorItens = valorItens;
+    }
+
+    public String getEstadoDestino() {
+        return estadoDestino;
+    }
+
+    public void setEstadoDestino(String estadoDestino) {
+        this.estadoDestino = estadoDestino;
+    }
+
+    public String getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(String formaPagamento) {
+        this.formaPagamento = formaPagamento;
+    }
+
+    // Responsabilidade 1: Regras de Frete e Entrega
+    public double calcularFrete() {
+        if (estadoDestino.equalsIgnoreCase("SP")) {
+            return 15.0;
+        }
+        return 35.0;
+    }
+
+    // Responsabilidade 2: Regras de Pagamento e Descontos
+    public double calcularDescontoPagamento() {
+        if (formaPagamento.equalsIgnoreCase("PIX")) {
+            return valorItens * 0.10;
+        }
+        return 0.0;
+    }
+
+    // Responsabilidade 3: Regras Fiscais / Nota Fiscal
+    public String gerarNotaFiscal() {
+        return "NF-e | Cliente: " + cliente + " | Total com Frete: " + (valorItens + calcularFrete() - calcularDescontoPagamento());
+    }
+}
