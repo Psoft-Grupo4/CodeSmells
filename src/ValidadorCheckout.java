@@ -1,46 +1,34 @@
 public class ValidadorCheckout {
 
     public boolean validarCep(String cep) {
-        if (cep == null) {
-            return false;
-        }
-        String apenasDigitos = cep.replaceAll("\\D", "");
-        if (apenasDigitos.length() != 8) {
-            return false;
-        }
-        return apenasDigitos.matches("\\d{8}");
+        return possuiTamanhoValido(cep, 8);
     }
 
     public boolean validarCpf(String cpf) {
-        if (cpf == null) {
-            return false;
-        }
-        String apenasDigitos = cpf.replaceAll("\\D", "");
-        if (apenasDigitos.length() != 11) {
-            return false;
-        }
-        return apenasDigitos.matches("\\d{11}");
+        return possuiTamanhoValido(cpf, 11);
     }
 
     public boolean validarCartao(String numeroCartao) {
-        if (numeroCartao == null) {
-            return false;
-        }
-        String apenasDigitos = numeroCartao.replaceAll("\\D", "");
-        if (apenasDigitos.length() != 16) {
-            return false;
-        }
-        return apenasDigitos.matches("\\d{16}");
+        return possuiTamanhoValido(numeroCartao, 16);
     }
 
     public boolean validarTelefone(String telefone) {
-        if (telefone == null) {
+        return possuiTamanhoValido(telefone, 10, 11);
+    }
+
+    private boolean possuiTamanhoValido(String valor, int... tamanhosValidos) {
+        if (valor == null) {
             return false;
         }
-        String apenasDigitos = telefone.replaceAll("\\D", "");
-        if (apenasDigitos.length() != 11 && apenasDigitos.length() != 10) {
-            return false;
+        
+        String apenasDigitos = valor.replaceAll("\\D", "");
+        
+        for (int tamanho : tamanhosValidos) {
+            if (apenasDigitos.length() == tamanho) {
+                return true;
+            }
         }
-        return apenasDigitos.matches("\\d{10,11}");
+        
+        return false;
     }
 }
