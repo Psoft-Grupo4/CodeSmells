@@ -1,3 +1,5 @@
+package solucao;
+
 public class Usuario {
 
     private String nome;
@@ -12,7 +14,6 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    
     public String getNome() {
         return nome;
     }
@@ -43,21 +44,5 @@ public class Usuario {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public boolean validarSenhaForte() {
-        return senha != null && senha.length() >= 8 && senha.matches(".*[A-Z].*");
-    }
-
-    public String montarEmailBoasVindas() {
-        return "Olá " + nome + ", bem-vindo ao sistema! Seu e-mail cadastrado é " + email;
-    }
-
-    public String montarSmsToken(String token) {
-        return "Enviado para " + telefone + ": Seu código de acesso é " + token;
-    }
-
-    public int calcularPontosFidelidade(int mesesAtivo) {
-        return mesesAtivo * 15;
     }
 }
