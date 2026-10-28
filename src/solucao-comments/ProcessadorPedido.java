@@ -38,26 +38,18 @@ public class ProcessadorPedido {
 
     private double somarValoresComImpostos() {
         double total = 0;
-        
         for (int posicao = 0; posicao < valoresItens.length; posicao++) {
             total += aplicarImposto(valoresItens[posicao], posicao);
         }
-        
         return total;
     }
 
     private double aplicarImposto(double valor, int posicao) {
         boolean ehPosicaoPar = (posicao % 2 == 0);
-        
         if (ehPosicaoPar) {
             return valor * (1 + TAXA_IMPOSTO);
         }
-    
         return valor;
-    }
-
-    private boolean posicaoEhPar(int posicao) {
-        return posicao % 2 == 0;
     }
 
     private double aplicarDesconto(double total) {
